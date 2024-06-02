@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
   // }
   err = bpf_prog_attach_uprobe_with_override(
       bpf_program__fd(obj->progs.start),
-      "/root/zys/bpftime-evaluation/redis-bpf/fsync_write", "start");
+      "/mnt/fast25/clickhouse-uring/iouring_hotpatch/fsync_write", "start");
   if (err) {
     fprintf(stderr, "Failed to attach BPF program start\n");
     goto cleanup;

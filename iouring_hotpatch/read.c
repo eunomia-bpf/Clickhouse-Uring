@@ -4,83 +4,22 @@
 #include <time.h>
 #include <unistd.h>
 
-// static int submit_io_uring_write(struct io_uring *ring, int fd, char *buf,
-//                                  size_t size) {
-//   struct io_uring_sqe *sqe;
-
-//   sqe = io_uring_get_sqe(ring);
-//   if (!sqe) {
-//     fprintf(stderr, "get sqe failed\n");
-//     return 1;
-//   }
-
-//   io_uring_prep_write(sqe, fd, buf, size, -1);
-//   sqe->user_data = 1;
-
-//   return 0;
-// }
-
-// static int submit_io_uring_fsync(struct io_uring *ring, int fd) {
-//   struct io_uring_sqe *sqe;
-
-//   sqe = io_uring_get_sqe(ring);
-//   if (!sqe) {
-//     fprintf(stderr, "get sqe failed\n");
-//     return 1;
-//   }
-
-//   io_uring_prep_fsync(sqe, fd, 0);
-//   sqe->user_data = 2;
-
-//   return 0;
-// }
-
-// static int io_uring_init(struct io_uring *ring) {
-//   int ret = io_uring_queue_init(1024, ring, IORING_SETUP_SINGLE_ISSUER);
-//   if (ret) {
-//     fprintf(stderr, "ring setup failed: %d\n", ret);
-//     return 1;
-//   }
-//   return 0;
-// }
-
-// static int io_uring_wait_and_seen(struct io_uring *ring,
-//                                   struct io_uring_cqe *cqe) {
-//   int ret = io_uring_wait_cqe(ring, &cqe);
-//   if (ret < 0) {
-//     fprintf(stderr, "wait completion %d\n", ret);
-//     return ret;
-//   }
-//   io_uring_cqe_seen(ring, cqe);
-//   return 0;
-// }
-
-// struct io_uring ring;
-
-// int reverse_count(int a) {
-//     if (a <= 0) {
-//       return 0;
-//     } else {
-//       return a + reverse_count(a - 1);
-//     }
-//   }
-
 int test() {
-  printf("test for fsync\n");
-  int fd = open("temp.txt", O_WRONLY | O_CREAT, 0644);
+  printf("test for read\n");
+  int fd = open("temp.txt", O_RDONLY);
   if (fd < 0) {
     perror("Failed to open file");
     return 1;
   }
   printf("fd: %d\n", fd);
-  const char *data = "Hello";
+  char buffer[4];
   int count = 0;
   time_t start = time(NULL);
 
-  while (time(NULL) - start < 3) {
-    if (read(fd, data, 5) != 5) {
-        perror("Failed to read");
-        break;
+  while (time(NULL) - start < 0.4) {
+    if (pread(fd, buffer, sizeof(buffer), sizeof(buffer)*count) <= 0) {
+      perror("Failed to read");
+      break;
     }
     count++;
   }
@@ -93,7 +32,6 @@ int test() {
 
 __attribute_noinline__ void start() {
   printf("start\n");
-//   io_uring_init(&ring);
 }
 
 int main() {

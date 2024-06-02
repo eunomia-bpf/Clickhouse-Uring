@@ -6,7 +6,7 @@
 
 int test() {
   printf("test for fsync\n");
-  int fd = open("temp.txt", O_WRONLY | O_CREAT, 0644);
+  int fd = open("temp.txt", O_APPEND | O_CREAT | O_WRONLY, 0644);
   if (fd < 0) {
     perror("Failed to open file");
     return 1;
