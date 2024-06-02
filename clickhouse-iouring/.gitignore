@@ -12,4 +12,3 @@ victim
 test.txt
 bench
 rocksdb
-fsync_write
