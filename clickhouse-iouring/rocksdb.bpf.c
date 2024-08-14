@@ -16,7 +16,7 @@
 #define EXTENDED_HELPER_IOURING_SUBMIT 1010
 
 static long (*io_uring_init_global)(void) = (void *) EXTENDED_HELPER_IOURING_INIT;
-static long (*io_uring_submit_write)(int fd, char *buf, unsigned long long size) = (void *) EXTENDED_HELPER_IOURING_SUBMIT_WRITE;
+static long (*io_uring_submit_write)(int fd, char *buf, unsigned long long size) = (char *) EXTENDED_HELPER_IOURING_SUBMIT_WRITE;
 static long (*io_uring_submit_fsync)(int fd) = (void *) EXTENDED_HELPER_IOURING_SUBMIT_FSYNC;
 static long (*io_uring_wait_and_seen)(void) = (void *) EXTENDED_HELPER_IOURING_WAIT_AND_SEEN;
 static long (*io_uring_submit)(void) = (void *) EXTENDED_HELPER_IOURING_SUBMIT;

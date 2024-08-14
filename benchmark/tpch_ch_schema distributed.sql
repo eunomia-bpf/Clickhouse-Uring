@@ -7,8 +7,8 @@
 --  copyright 2017-2018 monetdb solutions b.v.
 
 -- sccsid:     @(#)dss.ddl	2.1.8.1
--- Create local tables on each node in the 'tpch_benchmark' database
-CREATE TABLE tpch_benchmark.local_nation ON CLUSTER cluster_2S_1R
+-- Create local tables on each node in the 'insert_bench' database
+CREATE TABLE insert_bench.local_nation ON CLUSTER cluster_2S_1R
 (
     n_nationkey  INTEGER NOT NULL,
     n_name       CHAR(25) NOT NULL,
@@ -16,14 +16,14 @@ CREATE TABLE tpch_benchmark.local_nation ON CLUSTER cluster_2S_1R
     n_comment    VARCHAR(152)
 ) ENGINE = MergeTree() ORDER BY n_nationkey;
 
-CREATE TABLE tpch_benchmark.local_region ON CLUSTER cluster_2S_1R
+CREATE TABLE insert_bench.local_region ON CLUSTER cluster_2S_1R
 (
     r_regionkey  INTEGER NOT NULL,
     r_name       CHAR(25) NOT NULL,
     r_comment    VARCHAR(152)
 ) ENGINE = MergeTree() ORDER BY r_regionkey;
 
-CREATE TABLE tpch_benchmark.local_part ON CLUSTER cluster_2S_1R
+CREATE TABLE insert_bench.local_part ON CLUSTER cluster_2S_1R
 (
     p_partkey     INTEGER NOT NULL,
     p_name        VARCHAR(55) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE tpch_benchmark.local_part ON CLUSTER cluster_2S_1R
     p_comment     VARCHAR(23) NOT NULL
 ) ENGINE = MergeTree() ORDER BY p_partkey;
 
-CREATE TABLE tpch_benchmark.local_supplier ON CLUSTER cluster_2S_1R
+CREATE TABLE insert_bench.local_supplier ON CLUSTER cluster_2S_1R
 (
     s_suppkey     INTEGER NOT NULL,
     s_name        CHAR(25) NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE tpch_benchmark.local_supplier ON CLUSTER cluster_2S_1R
     s_comment     VARCHAR(101) NOT NULL
 ) ENGINE = MergeTree() ORDER BY s_suppkey;
 
-CREATE TABLE tpch_benchmark.local_partsupp ON CLUSTER cluster_2S_1R
+CREATE TABLE insert_bench.local_partsupp ON CLUSTER cluster_2S_1R
 (
     ps_partkey     INTEGER NOT NULL,
     ps_suppkey     INTEGER NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE tpch_benchmark.local_partsupp ON CLUSTER cluster_2S_1R
     ps_comment     VARCHAR(199) NOT NULL
 ) ENGINE = MergeTree() ORDER BY ps_partkey;
 
-CREATE TABLE tpch_benchmark.local_customer ON CLUSTER cluster_2S_1R
+CREATE TABLE insert_bench.local_customer ON CLUSTER cluster_2S_1R
 (
     c_custkey     INTEGER NOT NULL,
     c_name        VARCHAR(25) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE tpch_benchmark.local_customer ON CLUSTER cluster_2S_1R
     c_comment     VARCHAR(117) NOT NULL
 ) ENGINE = MergeTree() ORDER BY c_custkey;
 
-CREATE TABLE tpch_benchmark.local_orders ON CLUSTER cluster_2S_1R
+CREATE TABLE insert_bench.local_orders ON CLUSTER cluster_2S_1R
 (
     o_orderkey       BIGINT NOT NULL,
     o_custkey        INTEGER NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE tpch_benchmark.local_orders ON CLUSTER cluster_2S_1R
     o_comment        VARCHAR(79) NOT NULL
 ) ENGINE = MergeTree() ORDER BY o_orderkey;
 
-CREATE TABLE tpch_benchmark.local_lineitem ON CLUSTER cluster_2S_1R
+CREATE TABLE insert_bench.local_lineitem ON CLUSTER cluster_2S_1R
 (
     l_orderkey    BIGINT NOT NULL,
     l_partkey     INTEGER NOT NULL,
@@ -102,26 +102,26 @@ CREATE TABLE tpch_benchmark.local_lineitem ON CLUSTER cluster_2S_1R
 ) ENGINE = MergeTree() ORDER BY l_orderkey;
 
 
-CREATE TABLE tpch_benchmark.nation ON CLUSTER cluster_2S_1R AS tpch_benchmark.local_nation
-ENGINE = Distributed(cluster_2S_1R, 'tpch_benchmark', 'local_nation', n_nationkey);
+CREATE TABLE insert_bench.nation ON CLUSTER cluster_2S_1R AS insert_bench.local_nation
+ENGINE = Distributed(cluster_2S_1R, 'insert_bench', 'local_nation', n_nationkey);
 
-CREATE TABLE tpch_benchmark.region ON CLUSTER cluster_2S_1R AS tpch_benchmark.local_region
-ENGINE = Distributed(cluster_2S_1R, 'tpch_benchmark', 'local_region', r_regionkey);
+CREATE TABLE insert_bench.region ON CLUSTER cluster_2S_1R AS insert_bench.local_region
+ENGINE = Distributed(cluster_2S_1R, 'insert_bench', 'local_region', r_regionkey);
 
-CREATE TABLE tpch_benchmark.part ON CLUSTER cluster_2S_1R AS tpch_benchmark.local_part
-ENGINE = Distributed(cluster_2S_1R, 'tpch_benchmark', 'local_part', p_partkey);
+CREATE TABLE insert_bench.part ON CLUSTER cluster_2S_1R AS insert_bench.local_part
+ENGINE = Distributed(cluster_2S_1R, 'insert_bench', 'local_part', p_partkey);
 
-CREATE TABLE tpch_benchmark.supplier ON CLUSTER cluster_2S_1R AS tpch_benchmark.local_supplier
-ENGINE = Distributed(cluster_2S_1R, 'tpch_benchmark', 'local_supplier', s_suppkey);
+CREATE TABLE insert_bench.supplier ON CLUSTER cluster_2S_1R AS insert_bench.local_supplier
+ENGINE = Distributed(cluster_2S_1R, 'insert_bench', 'local_supplier', s_suppkey);
 
-CREATE TABLE tpch_benchmark.partsupp ON CLUSTER cluster_2S_1R AS tpch_benchmark.local_partsupp
-ENGINE = Distributed(cluster_2S_1R, 'tpch_benchmark', 'local_partsupp', ps_partkey);
+CREATE TABLE insert_bench.partsupp ON CLUSTER cluster_2S_1R AS insert_bench.local_partsupp
+ENGINE = Distributed(cluster_2S_1R, 'insert_bench', 'local_partsupp', ps_partkey);
 
-CREATE TABLE tpch_benchmark.customer ON CLUSTER cluster_2S_1R AS tpch_benchmark.local_customer
-ENGINE = Distributed(cluster_2S_1R, 'tpch_benchmark', 'local_customer', c_custkey);
+CREATE TABLE insert_bench.customer ON CLUSTER cluster_2S_1R AS insert_bench.local_customer
+ENGINE = Distributed(cluster_2S_1R, 'insert_bench', 'local_customer', c_custkey);
 
-CREATE TABLE tpch_benchmark.orders ON CLUSTER cluster_2S_1R AS tpch_benchmark.local_orders
-ENGINE = Distributed(cluster_2S_1R, 'tpch_benchmark', 'local_orders', o_orderkey);
+CREATE TABLE insert_bench.orders ON CLUSTER cluster_2S_1R AS insert_bench.local_orders
+ENGINE = Distributed(cluster_2S_1R, 'insert_bench', 'local_orders', o_orderkey);
 
-CREATE TABLE tpch_benchmark.lineitem ON CLUSTER cluster_2S_1R AS tpch_benchmark.local_lineitem
-ENGINE = Distributed(cluster_2S_1R, 'tpch_benchmark', 'local_lineitem', l_orderkey);
+CREATE TABLE insert_bench.lineitem ON CLUSTER cluster_2S_1R AS insert_bench.local_lineitem
+ENGINE = Distributed(cluster_2S_1R, 'insert_bench', 'local_lineitem', l_orderkey);

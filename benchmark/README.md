@@ -406,7 +406,7 @@ Run the following command to run the queries for 10 times and benchmakr the perf
 
 Specifically, to profile the syscall for a single query, run the following command
 ```
-sudo perf record -g -p {pid of the node of your interest} -- /ch_cluster/bin/clickhouse-client  --port {port number of the node of your interest} --database=tpch_benchmark < {sql file}
+z{pid of the node of your interest} -- /ch_cluster/bin/clickhouse-client  --port {port number of the node of your interest} --database=tpch_benchmark < {sql file}
 ```
 
 Then draw the flamegraph following the instructions in the link below

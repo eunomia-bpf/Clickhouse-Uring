@@ -21,7 +21,7 @@ INCLUDES := -I$(OUTPUT) -I/mnt/fast25/bpftime/third_party/libbpf/include/uapi -I
 CFLAGS := -g -Wall
 ALL_LDFLAGS := $(LDFLAGS) $(EXTRA_LDFLAGS)
 
-APPS = test # minimal minimal_legacy uprobe kprobe fentry usdt sockfilter tc ksyscall
+APPS = tp
 
 CARGO ?= $(shell which cargo)
 ifeq ($(strip $(CARGO)),)

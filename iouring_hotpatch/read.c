@@ -25,7 +25,7 @@ int test() {
   }
 
   close(fd);
-  printf("Number of read calls in 3 seconds: %d\n", count);
+  printf("Number of read calls in 0.4 seconds: %d\n", count);
 
   return 0;
 }

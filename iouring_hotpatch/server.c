@@ -57,23 +57,53 @@ int test() {
 
     printf("Client connected\n");
 
-    // Echo loop
-    for (;;) {
-        numRead = recv(client_fd, buf, BUF_SIZE, 0);
-        if (numRead <= 0) {
-            // Exit loop on EOF or error
-            break;
-        }
-        if (send(client_fd, buf, numRead, 0) != numRead) {
-            perror("send");
-            break;
-        }
+    // // Echo loop
+    // for (;;) {
+    //     numRead = recv(client_fd, buf, BUF_SIZE, 0);
+    //     if (numRead <= 0) {
+    //         // Exit loop on EOF or error
+    //         break;
+    //     }
+    //     if (send(client_fd, buf, numRead, 0) != numRead) {
+    //         perror("send");
+    //         break;
+    //     }
+    // }
+
+    // close(client_fd);
+    // close(listen_fd);
+    // printf("Number of write and fsync calls in 3 seconds: %d\n", ++count);
+    int bytesRead, response_fd, recv_fd;
+
+    
+    //create response file
+    printf("Waiting for response file to be created");
+    recv_fd = open("response.txt", O_RDWR);
+
+    bytesRead = read(client_fd, buf, BUF_SIZE);
+    while (bytesRead > 0) {
+        write(recv_fd, buf, bytesRead);
+        bytesRead = read(client_fd, buf, BUF_SIZE);
     }
 
-    close(client_fd);
-    close(listen_fd);
-    printf("Number of write and fsync calls in 3 seconds: %d\n", ++count);
+    close(recv_fd);
 
+    response_fd = open("response.txt", O_RDONLY);
+    if (response_fd < 0) {
+      perror("Fail to open response.txt");
+      return -1;
+    }
+
+    int bytesSent = read(response_fd, buf, BUF_SIZE);
+    while (bytesSent > 0) {
+      send(client_fd, buf, bytesSent, 0);
+      bytesSent = read(response_fd, buf, BUF_SIZE);
+    }
+
+    printf("Response sent");
+    close(client_fd);
+    close(response_fd);
+    close(listen_fd);
     return 0;
 }
 
@@ -84,9 +114,10 @@ __attribute_noinline__ void start() {
 
 int main() {
   start();
-  while (1) {
-    test();
-    sleep(1);
-  }
+  // while (1) {
+  //   test();
+  //   sleep(1);
+  // }
+  test();
   return 0;
 }

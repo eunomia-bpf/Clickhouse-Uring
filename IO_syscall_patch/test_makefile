@@ -21,7 +21,7 @@ INCLUDES := -I$(OUTPUT) -I/mnt/fast25/bpftime/third_party/libbpf/include/uapi -I
 CFLAGS := -g -Wall
 ALL_LDFLAGS := $(LDFLAGS) $(EXTRA_LDFLAGS)
 
-APPS = test # minimal minimal_legacy uprobe kprobe fentry usdt sockfilter tc ksyscall
+APPS = write # minimal minimal_legacy uprobe kprobe fentry usdt sockfilter tc ksyscall
 
 CARGO ?= $(shell which cargo)
 ifeq ($(strip $(CARGO)),)
@@ -66,7 +66,10 @@ $(call allow-override,CC,$(CROSS_COMPILE)cc)
 $(call allow-override,LD,$(CROSS_COMPILE)ld)
 
 .PHONY: all
-all: $(APPS)
+all: $(APPS) victim
+
+victim: victim.c
+	gcc victim.c -o victim -Wall -g
 
 .PHONY: clean
 clean:
@@ -105,7 +108,7 @@ $(LIBBLAZESYM_HEADER): $(LIBBLAZESYM_SRC)/target/release/libblazesym.a | $(OUTPU
 # Build BPF code
 $(OUTPUT)/%.bpf.o: %.bpf.c $(LIBBPF_OBJ) $(wildcard %.h) $(VMLINUX) | $(OUTPUT) $(BPFTOOL)
 	$(call msg,BPF,$@)
-	$(Q)$(CLANG) -g -O2 -target bpf -D__TARGET_ARCH_$(ARCH)		      \
+	$(Q)$(CLANG) -Xlinker --export-dynamic -g -O2 -target bpf -D__TARGET_ARCH_$(ARCH)		      \
 		     $(INCLUDES) $(CLANG_BPF_SYS_INCLUDES)		      \
 		     -c $(filter %.c,$^) -o $(patsubst %.bpf.o,%.tmp.bpf.o,$@)
 	$(Q)$(BPFTOOL) gen object $@ $(patsubst %.bpf.o,%.tmp.bpf.o,$@)
@@ -136,6 +139,3 @@ $(APPS): %: $(OUTPUT)/%.o $(LIBBPF_OBJ) | $(OUTPUT)
 
 # keep intermediate (.skel.h, .bpf.o, etc) targets
 .SECONDARY:
-
-bench: bench.cpp
-	$(CXX) bench.cpp -Wall -g -o bench

@@ -1,0 +1,109 @@
+1303164 execve("./uring_client", ["./uring_client"], ["SHELL=/bin/bash", "COLORTERM=truecolor", "TERM_PROGRAM_VERSION=1.89.1", "CONDA_EXE=/root/anaconda3/bin/co"..., "_CE_M=", "GPG_TTY=/dev/pts/4", "PWD=/mnt/fast25/clickhouse-uring"..., "LOGNAME=root", "XDG_SESSION_TYPE=tty", "SPACK_PYTHON=/usr/bin/python3", "VSCODE_GIT_ASKPASS_NODE=/root/.v"..., "HOME=/root", "LS_COLORS=rs=0:di=01;34:ln=01;36"..., "SSL_CERT_DIR=/usr/lib/ssl/certs", "GIT_ASKPASS=/root/.vscode-server"..., "SSH_CONNECTION=128.114.59.200 32"..., "SPACK_ROOT=/opt/spack", "VSCODE_GIT_ASKPASS_EXTRA_ARGS=", "LESSCLOSE=/usr/bin/lesspipe %s %"..., "XDG_SESSION_CLASS=user", "TERM=xterm-256color", "_CE_CONDA=", "LESSOPEN=| /usr/bin/lesspipe %s", "LIBVIRT_DEFAULT_URI=qemu:///syst"..., "USER=root", "VSCODE_GIT_IPC_HANDLE=/run/user/"..., "CONDA_SHLVL=0", "SHLVL=2", "XDG_SESSION_ID=9656", "CONDA_PYTHON_EXE=/root/anaconda3"..., "LD_LIBRARY_PATH=/root/.bpftime/:"..., "XDG_RUNTIME_DIR=/run/user/0", "SSL_CERT_FILE=/usr/lib/ssl/cert."..., "SSH_CLIENT=128.114.59.200 32952 "..., "DEBUGINFOD_URLS=https://debuginf"..., "VSCODE_GIT_ASKPASS_MAIN=/root/.v"..., "XDG_DATA_DIRS=/usr/local/share:/"..., "BROWSER=/root/.vscode-server/cli"..., "PATH=/root/.bpftime:/opt/spack/b"..., "DBUS_SESSION_BUS_ADDRESS=unix:pa"..., "TERM_PROGRAM=vscode", "VSCODE_IPC_HOOK_CLI=/run/user/0/"..., "BASH_FUNC__spack_shell_wrapper%%"..., "BASH_FUNC_spack%%=() {  : this i"..., "_=/usr/bin/strace"]) = 0
+1303164 brk(NULL)                       = 0x55555555a000
+1303164 arch_prctl(0x3001 /* ARCH_??? */, 0x7fffffffd2b0) = -1 EINVAL (Invalid argument)
+1303164 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7ffff7fc6000
+1303164 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "/root/.bpftime/glibc-hwcaps/x86-64-v4/liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 newfstatat(AT_FDCWD, "/root/.bpftime/glibc-hwcaps/x86-64-v4", 0x7fffffffc4e0, 0) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "/root/.bpftime/glibc-hwcaps/x86-64-v3/liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 newfstatat(AT_FDCWD, "/root/.bpftime/glibc-hwcaps/x86-64-v3", 0x7fffffffc4e0, 0) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "/root/.bpftime/glibc-hwcaps/x86-64-v2/liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 newfstatat(AT_FDCWD, "/root/.bpftime/glibc-hwcaps/x86-64-v2", 0x7fffffffc4e0, 0) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "/root/.bpftime/liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 newfstatat(AT_FDCWD, "/root/.bpftime", {st_dev=makedev(0x103, 0x2), st_ino=164041691, st_mode=S_IFDIR|0755, st_nlink=2, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=8, st_size=4096, st_atime=1717918110 /* 2024-06-09T00:28:30.557498780-0700 */, st_atime_nsec=557498780, st_mtime=1717333111 /* 2024-06-02T05:58:31.548033037-0700 */, st_mtime_nsec=548033037, st_ctime=1717333111 /* 2024-06-02T05:58:31.548033037-0700 */, st_ctime_nsec=548033037}, 0) = 0
+1303164 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v4/liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "/usr/aarch64-linux-gnu/lib/glibc-hwcaps/x86-64-v4/liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 newfstatat(AT_FDCWD, "/usr/aarch64-linux-gnu/lib/glibc-hwcaps/x86-64-v4", 0x7fffffffc4e0, 0) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "/usr/aarch64-linux-gnu/lib/glibc-hwcaps/x86-64-v3/liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 newfstatat(AT_FDCWD, "/usr/aarch64-linux-gnu/lib/glibc-hwcaps/x86-64-v3", 0x7fffffffc4e0, 0) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "/usr/aarch64-linux-gnu/lib/glibc-hwcaps/x86-64-v2/liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 newfstatat(AT_FDCWD, "/usr/aarch64-linux-gnu/lib/glibc-hwcaps/x86-64-v2", 0x7fffffffc4e0, 0) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "/usr/aarch64-linux-gnu/lib/liburing.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 newfstatat(AT_FDCWD, "/usr/aarch64-linux-gnu/lib", {st_dev=makedev(0x103, 0x2), st_ino=107175939, st_mode=S_IFDIR|0755, st_nlink=2, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=8, st_size=4096, st_atime=1709256405 /* 2024-02-29T17:26:45.944000000-0800 */, st_atime_nsec=944000000, st_mtime=1709256487 /* 2024-02-29T17:28:07.988000000-0800 */, st_mtime_nsec=988000000, st_ctime=1709256487 /* 2024-02-29T17:28:07.988000000-0800 */, st_ctime_nsec=988000000}, 0) = 0
+1303164 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+1303164 newfstatat(3, "", {st_dev=makedev(0x103, 0x2), st_ino=154076353, st_mode=S_IFREG|0644, st_nlink=1, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=152, st_size=77479, st_atime=1717966434 /* 2024-06-09T13:53:54.835484412-0700 */, st_atime_nsec=835484412, st_mtime=1716756779 /* 2024-05-26T13:52:59.969147787-0700 */, st_mtime_nsec=969147787, st_ctime=1716756779 /* 2024-05-26T13:52:59.973147720-0700 */, st_ctime_nsec=973147720}, AT_EMPTY_PATH) = 0
+1303164 mmap(NULL, 77479, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7ffff7fb3000
+1303164 close(3)                        = 0
+1303164 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/liburing.so.2", O_RDONLY|O_CLOEXEC) = 3
+1303164 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+1303164 newfstatat(3, "", {st_dev=makedev(0x103, 0x2), st_ino=107152319, st_mode=S_IFREG|0644, st_nlink=1, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=48, st_size=22600, st_atime=1717981049 /* 2024-06-09T17:57:29.041238214-0700 */, st_atime_nsec=41238214, st_mtime=1674008154 /* 2023-01-17T18:15:54-0800 */, st_mtime_nsec=0, st_ctime=1700244843 /* 2023-11-17T10:14:03.912000000-0800 */, st_ctime_nsec=912000000}, AT_EMPTY_PATH) = 0
+1303164 mmap(NULL, 24592, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7ffff7fac000
+1303164 mmap(0x7ffff7fae000, 8192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x7ffff7fae000
+1303164 mmap(0x7ffff7fb0000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4000) = 0x7ffff7fb0000
+1303164 mmap(0x7ffff7fb1000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4000) = 0x7ffff7fb1000
+1303164 close(3)                        = 0
+1303164 openat(AT_FDCWD, "/root/.bpftime/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v4/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+1303164 openat(AT_FDCWD, "/usr/aarch64-linux-gnu/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+1303164 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\260o\2\0\0\0\0\0"..., 832) = 832
+1303164 close(3)                        = 0
+1303164 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+1303164 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0P<\2\0\0\0\0\0"..., 832) = 832
+1303164 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+1303164 newfstatat(3, "", {st_dev=makedev(0x103, 0x2), st_ino=107151679, st_mode=S_IFREG|0644, st_nlink=2, st_uid=0, st_gid=0, st_blksize=4096, st_blocks=4056, st_size=2072888, st_atime=1717958255 /* 2024-06-09T11:37:35.337175156-0700 */, st_atime_nsec=337175156, st_mtime=1695644452 /* 2023-09-25T05:20:52-0700 */, st_mtime_nsec=0, st_ctime=1715798176 /* 2024-05-15T11:36:16.221929865-0700 */, st_ctime_nsec=221929865}, AT_EMPTY_PATH) = 0
+1303164 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+1303164 mmap(NULL, 2117488, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7ffff7c00000
+1303164 mmap(0x7ffff7c22000, 1540096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x22000) = 0x7ffff7c22000
+1303164 mmap(0x7ffff7d9a000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x19a000) = 0x7ffff7d9a000
+1303164 mmap(0x7ffff7df2000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1f1000) = 0x7ffff7df2000
+1303164 mmap(0x7ffff7df8000, 53104, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7ffff7df8000
+1303164 close(3)                        = 0
+1303164 mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7ffff7fa9000
+1303164 arch_prctl(ARCH_SET_FS, 0x7ffff7fa9740) = 0
+1303164 set_tid_address(0x7ffff7fa9a10) = 1303164
+1303164 set_robust_list(0x7ffff7fa9a20, 24) = 0
+1303164 rseq(0x7ffff7faa060, 0x20, 0, 0x53053053) = 0
+1303164 mprotect(0x7ffff7df2000, 16384, PROT_READ) = 0
+1303164 mprotect(0x7ffff7fb1000, 4096, PROT_READ) = 0
+1303164 mprotect(0x555555558000, 4096, PROT_READ) = 0
+1303164 mprotect(0x7ffff7ffb000, 8192, PROT_READ) = 0
+1303164 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+1303164 munmap(0x7ffff7fb3000, 77479)   = 0
+1303164 socket(AF_INET, SOCK_STREAM, IPPROTO_IP) = 3
+1303164 newfstatat(1, "", {st_dev=makedev(0, 0x17), st_ino=7, st_mode=S_IFCHR|0620, st_nlink=1, st_uid=0, st_gid=5, st_blksize=1024, st_blocks=0, st_rdev=makedev(0x88, 0x4), st_atime=1717984080 /* 2024-06-09T18:48:00.448955069-0700 */, st_atime_nsec=448955069, st_mtime=1717984080 /* 2024-06-09T18:48:00.448955069-0700 */, st_mtime_nsec=448955069, st_ctime=1717979820 /* 2024-06-09T17:37:00.448955069-0700 */, st_ctime_nsec=448955069}, AT_EMPTY_PATH) = 0
+1303164 getrandom("\x9c\x0f\x7b\x77\x10\x34\x37\xd7", 8, GRND_NONBLOCK) = 8
+1303164 brk(NULL)                       = 0x55555555a000
+1303164 brk(0x55555557b000)             = 0x55555557b000
+1303164 write(1, "Socket created: 3\n", 18) = 18
+1303164 write(1, "Server address set: 127.0.0.1:80"..., 35) = 35
+1303164 io_uring_setup(256, {flags=0, sq_thread_cpu=0, sq_thread_idle=0, sq_entries=256, cq_entries=512, features=IORING_FEAT_SINGLE_MMAP|IORING_FEAT_NODROP|IORING_FEAT_SUBMIT_STABLE|IORING_FEAT_RW_CUR_POS|IORING_FEAT_CUR_PERSONALITY|IORING_FEAT_FAST_POLL|IORING_FEAT_POLL_32BITS|IORING_FEAT_SQPOLL_NONFIXED|IORING_FEAT_EXT_ARG|IORING_FEAT_NATIVE_WORKERS|IORING_FEAT_RSRC_TAGS|IORING_FEAT_CQE_SKIP|IORING_FEAT_LINKED_FILE, sq_off={head=0, tail=64, ring_mask=256, ring_entries=264, flags=276, dropped=272, array=8512}, cq_off={head=128, tail=192, ring_mask=260, ring_entries=268, overflow=284, cqes=320, flags=280}}) = 4
+1303164 mmap(NULL, 9536, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_POPULATE, 4, 0) = 0x7ffff7fc3000
+1303164 mmap(NULL, 16384, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_POPULATE, 4, 0x10000000) = 0x7ffff7fbf000
+1303164 write(1, "io_uring initialized\n", 21) = 21
+1303164 write(1, "Connect request added: sock_fd=3"..., 33) = 33
+1303164 io_uring_enter(4, 1, 0, 0, NULL, 8) = 1
+1303164 io_uring_enter(4, 0, 1, IORING_ENTER_GETEVENTS, NULL, 8) = 0
+1303164 write(1, "CQE received: result=0, type=0\n", 31) = 31
+1303164 write(1, "Connected to server\n", 20) = 20
+1303164 openat(AT_FDCWD, "temp.txt", O_RDONLY) = 5
+1303164 write(1, "File opened: file_fd=5\n", 23) = 23
+1303164 write(1, "Adding read request: fd=5, buffe"..., 54) = 54
+1303164 write(1, "Read buffer address: 0x55555555a"..., 54) = 54
+1303164 io_uring_enter(4, 1, 0, 0, NULL, 8) = 1
+1303164 write(1, "CQE received: result=1024, type="..., 34) = 34
+1303164 write(1, "Send operation completed: bytes "..., 42) = 42
+1303164 write(1, "Adding write request: fd=3, buff"..., 55) = 55
+1303164 write(1, "Write buffer address: 0x55555555"..., 55) = 55
+1303164 io_uring_enter(4, 1, 0, 0, NULL, 8) = 1
+1303164 write(1, "CQE received: result=1024, type="..., 34) = 34
+1303164 write(1, "Send operation completed: bytes "..., 42) = 42
+1303164 write(1, "Adding write request: fd=3, buff"..., 55) = 55
+1303164 write(1, "Write buffer address: 0x55555555"..., 55) = 55
+1303164 io_uring_enter(4, 1, 0, 0, NULL, 8) = 1
+1303164 write(1, "CQE received: result=1024, type="..., 34) = 34
+1303164 write(1, "Send operation completed: bytes "..., 42) = 42
+1303164 write(1, "Adding write request: fd=3, buff"..., 55) = 55
+1303164 write(1, "Write buffer address: 0x55555555"..., 55) = 55
+1303164 io_uring_enter(4, 1, 0, 0, NULL, 8) = 1
+1303164 write(2, "Async operation failed: -104 (er"..., 51) = 51
+1303164 close(3)                        = 0
+1303164 close(5)                        = 0
+1303164 io_uring_enter(4, 0, 1, IORING_ENTER_GETEVENTS, NULL, 8) = -1 EINTR (Interrupted system call)
+1303164 --- SIGINT {si_signo=SIGINT, si_code=SI_KERNEL} ---
+1303164 +++ killed by SIGINT +++

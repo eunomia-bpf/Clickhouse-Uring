@@ -43,27 +43,74 @@ int test() {
 
   printf("Connected to server\n");
 
-  // Read input from user and send to server
-  while (fgets(buf, BUF_SIZE, stdin) != NULL) {
-    if (send(sock_fd, buf, strlen(buf), 0) < 0) {
-      perror("send");
-      break;
-    }
+  // // Read input from user and send to server
+  // while (fgets(buf, BUF_SIZE, stdin) != NULL) {
+  //   if (send(sock_fd, buf, strlen(buf), 0) < 0) {
+  //     perror("send");
+  //     break;
+  //   }
 
-    // Receive echoed message from server
-    numRead = recv(sock_fd, buf, BUF_SIZE, 0);
-    if (numRead < 0) {
-      perror("recv");
-      break;
-    }
+  //   // Receive echoed message from server
+  //   numRead = recv(sock_fd, buf, BUF_SIZE, 0);
+  //   if (numRead < 0) {
+  //     perror("recv");
+  //     break;
+  //   }
 
-    // Print received message
-    printf("Server echoed: %.*s", (int)numRead, buf);
+  //   // Print received message
+  //   printf("Server echoed: %.*s", (int)numRead, buf);
+  // }
+
+  // close(sock_fd);
+  // printf("Number of write and fsync calls in 3 seconds: %d\n", count++);
+  int file_fd = open("temp.txt", O_RDONLY);
+  if (file_fd < 0) {
+      perror("Failed to open file temp.txt");
+      return -1;
   }
 
-  close(sock_fd);
-  printf("Number of write and fsync calls in 3 seconds: %d\n", count++);
 
+  int bytes_read = read(file_fd, buf, BUF_SIZE);
+  while (bytes_read > 0) {
+    send(sock_fd, buf, bytes_read, 0);
+    bytes_read = read(file_fd, buf, BUF_SIZE);
+  }
+  shutdown(sock_fd, SHUT_WR); // Signal end of data sending
+
+  printf("Data sent\n");
+
+  int recv_fd = open("recv.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+  if (recv_fd < 0) {
+    perror("Failed to open file recv.txt");
+    close(sock_fd);
+    return -1;
+  }
+
+  // Set timeout
+  struct timeval tv;
+  tv.tv_sec = 5;  
+  tv.tv_usec = 0;
+  setsockopt(sock_fd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
+
+  int bytesRead;
+  // Receive response from server
+  while ((bytesRead = recv(sock_fd, buf, BUF_SIZE, 0)) > 0) {
+    if (write(recv_fd, buf, bytesRead) != bytesRead) {
+      perror("write");
+      close(recv_fd);
+      close(sock_fd);
+      return -1;
+    }
+  }
+
+  if (bytesRead < 0) {
+    perror("recv");
+  }
+
+  close(recv_fd);
+  close(sock_fd);
+
+  printf("Data transfer complete\n");
   return 0;
 }
 
@@ -74,9 +121,10 @@ __attribute_noinline__ void start() {
 
 int main() {
   start();
-  while (1) {
-    test();
-    sleep(1);
-  }
+  // while (1) {
+  //   test();
+  //   sleep(1);
+  // }
+  test();
   return 0;
 }
