@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
   int err;
   int map_fd;
 
-  libbpf_set_print(verbose_print);
+  libbpf_set_print(libbpf_print_fn);
 
   obj = tp_bpf__open_opts(&open_opts);
   if (!obj) {
@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
   struct bpf_link *link = bpf_program__attach_usdt(
       obj->progs.read_from_task, -1,
       "/mnt/fast25/ClickHouse/build/programs/clickhouse", "clickhouse",
-      "before_read_from_task", NULL);
+      "preadRaw", NULL);
   if (!link) {
     fprintf(stderr,
             "Failed to attach USDT probe 'before_read_from_task':% d\n ", err);
@@ -94,14 +94,25 @@ int main(int argc, char **argv) {
   }
 
   link = bpf_program__attach_usdt(
-      obj->progs.read_bytes_count, -1,
+      obj->progs.read_from_task, -1,
       "/mnt/fast25/ClickHouse/build/programs/clickhouse", "clickhouse",
-      "bytesRead", NULL);
+      "batchSubmit", NULL);
   if (!link) {
+    err = errno;
     fprintf(stderr,
-            "Failed to attach USDT probe 'bytesRead':% d\n ", err);
+            "Failed to attach USDT probe 'preadRaw':% d\n ", err);
     goto cleanup;
   }
+
+  // link = bpf_program__attach_usdt(
+  //     obj->progs.read_bytes_count, -1,
+  //     "/mnt/fast25/ClickHouse/build/programs/clickhouse", "clickhouse",
+  //     "bytesRead", NULL);
+  // if (!link) {
+  //   fprintf(stderr,
+  //           "Failed to attach USDT probe 'bytesRead':% d\n ", err);
+  //   goto cleanup;
+  // }
 
   // link = bpf_program__attach_usdt(
   //     obj->progs.read_from_task, -1,
@@ -118,8 +129,7 @@ int main(int argc, char **argv) {
   // if (!link) {
   //   fprintf(
   //       stderr,
-  //       "Failed to attach tracepoint program 'trace_sched_process_fork':
-  //       %d\n", err);
+  //       "Failed to attach tracepoint program 'trace_sched_process_fork':%d\n", err);
   //   goto cleanup;
   // }
 

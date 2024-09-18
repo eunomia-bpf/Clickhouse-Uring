@@ -21,7 +21,7 @@ INCLUDES := -I$(OUTPUT) -I/mnt/fast25/bpftime/third_party/libbpf/include/uapi -I
 CFLAGS := -g -Wall
 ALL_LDFLAGS := $(LDFLAGS) $(EXTRA_LDFLAGS)
 
-APPS = tp
+APPS = uprobe
 
 CARGO ?= $(shell which cargo)
 ifeq ($(strip $(CARGO)),)
@@ -31,6 +31,8 @@ BZS_APPS := # profile
 APPS += $(BZS_APPS)
 # Required by libblazesym
 ALL_LDFLAGS += -lrt -ldl -lpthread -lm
+# add liburing
+ALL_LDFLAGS += -luring
 endif
 
 # Get Clang's default includes on this system. We'll explicitly add these dirs
